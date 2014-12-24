@@ -1,1 +1,55 @@
 \chapter{Méthodologie}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{./images/methodo.png}
+\caption{Schéma montrant les différentes étapes du processus de modélisation du nuage 3D}
+\end{figure}
+
+\paragraph{Elévation :} Le nuage de point 3D est projeté sur des images d’élévation.
+
+\paragraph{Détection :}Un DTM [Digital Terrain Model] ou MNE [Modèle Numérique d’Elévation] en français, est automatiquement créé et les objets hypothétique sont générés comme des discontinuités sur le sol.
+
+\paragraph{Segmentation :} Les facades sont segmentées automatiquement comme les structures verticales les plus hautes sur les images d’élévation. Ensuite les petites régions isolées sont éliminées, et les objets connectés sont segmentés. Le résultat de l’étape de segmentation crée une image d’étiquettes, où chaque objet segmenté contient un identifiant unique.
+
+\paragraph{Classification :} Par la suite, de nombreuses caractéristiques géométriques sont calculées et un classement est opéré. A partir de l’étape de classement, une image de classes est crée, contenant une catégorie pour chaque objet segmenté. 
+Le fait d’avoir les étiquettes et les classes dans deux images différentes est utile dans le cas des objets connectés appartenant à la même classe (par exemple un alignement de voiture garées). 
+Reprojection : Finalement, les images de classes et d’étiquettes sont reprojetées sur le nuage de points 3D afin d’obtenir le résultat final. Cette étape transforme les images 2D en nuage de points 3D. Chaque pixel du nuage de point prend l’étiquette et la classe de ce pixel.
+
+\section{Images d'élévation}
+
+Les images d’élévation sont des structures en $2.5D$ qui contiennent une information sur l’altitude de chaque pixel. Les nuages de points 3D sont projetés sur des images d’élévation car elles sont des structures pratiques pour visualiser et traiter les données. On peut utiliser tous les outils de traitements d’image existants, en particulier la morphologie mathématique (Mathero, 1975; Serra; 1988; Soille, 2003). De plus, les images peuvent être traitées rapidement, implicitement définissent les relations de voisinage, et requière moins de mémoire que les données 3D.
+
+Les images d’élévation sont générées par une \textbf{projection orthographique} du nuage de points 3D en utilisant une caméra virtuelle. La caméra virtuelle est placée sur le plan horizontal et croise le point le plus bas dans le nuage de point $(0, 0, z_{min})$. Par conséquent, chaque pixel de l’image d’élévation contient l’élévation de la cellule de grille au dessus de $z_{min}$. Le seul paramètre libre dans cette projection est la taille du pixel spatial, qui doit être choisi avec attention. 
+\begin{itemize}
+\item Si il est trop large, trop de points seront projetés sur le même pixel, faisant ainsi perdre les détails. 
+\item Si il est trop petit, cela implique des problèmes de connectivité et des grandes tailles d’images, ce qui ne justifierait plus l’utilisation d’images d’élévation à la place des nuages de points 3D. 
+\end{itemize}
+
+\vspace{1em}
+
+Pour éviter les problèmes de connectivité et la parte d’information, la taille du pixel spatial est choisi selon la résolution du nuage de points.
+En général, de nombreux points sont projetés sur le même pixel. Par conséquent, quatres images sont définies :
+
+\begin{enumerate}
+\item Image d’élévation maximum (ou simplement image d’élévation), stocke l’élévation maximale entre tous les points projetés sur le même pixel ;
+\item Image d’élévation minimal, stocke l’élévation minimum entre tous les points projetés sur le même pixel ;
+\item Image de différence de hauteurs, contient la différence entre les deux images précédentes ;
+\item Image d’accumulation, qui stocke le nombre de points projetés sur chaque pixel.
+\end{enumerate}
+
+\vspace{1em}
+
+En général, les étapes opératoires sont effectuées sur l’image d’élévation maximum. Les autres images sont utilisées pour supporter certaines décisions lors des analyses ou pour traiter les caractéristiques des objets.
+Après la création de l’image, une interpolation morphologique est effectuée afin de remplir les trous causés par les occlusions et les lignes de balayage manquantes. Une technique d’interpolation basée sur l’opération morphologique \enquote{fill holes} est préférée puisque cette transformation ne crée pas un nouveau maximum de région dans l’image. Un trou est une région sombre (= entourée par des pixels plus clairs), non connectée au bord de l’image. Cette méthode d’interpolation a été proposé par Hernandez and Marcotegui (2009a) et une explication détaillée peut être trouvée dans Serna and Marcotegui, 2013b.
+
+Quand la détection, la segmentation et la classification ont été effectuées, les images sont projetées sur le nuage de points 3D. 
+
+\section{Détection}
+
+\section{Segmentation}
+\subsection{Sol}
+\subsection{Objets}
+
+
+\section{Classification}
