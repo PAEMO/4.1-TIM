@@ -1,0 +1,512 @@
+% Version 1.00
+% Auteur tantPic
+
+\NeedsTeXFormat{LaTeX2e}[1999/01/01]
+\ProvidesPackage{packages/miseEnPage}[2014/08/02]
+
+\RequirePackage{boxedminipage}
+\RequirePackage{graphicx}
+\RequirePackage{color}
+\RequirePackage{tabularx}
+\RequirePackage{fancyhdr}
+\RequirePackage[francais]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{ifthen}
+\RequirePackage{amsmath,amssymb,amsfonts,amsthm,textcomp}
+\RequirePackage{longtable}
+%\RequirePackage[urlcolor=blue, linkcolor=black,linktoc=all, colorlinks=true]{hyperref}
+\RequirePackage{colortbl}
+\RequirePackage{array,multirow,makecell}
+\RequirePackage[table]{xcolor}
+\RequirePackage[final]{pdfpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%                                     % 
+%       Définition des couleurs       %
+%                                     % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+
+\definecolor{bleuInformatique}{rgb}{0.369,0.769,0.930}
+\definecolor{grisInsa}{gray}{0.5}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%                                     % 
+%    Parametres des pages de garde    %
+%                                     % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+
+\newcommand{\titreAcronymePrive}[0]{\ }
+\newcommand{\titreAcronyme}[1]{
+  \renewcommand{\titreAcronymePrive}[0]{#1}
+}
+
+\newcommand{\titreGeneralPrive}[0]{\ }
+\newcommand{\titreGeneral}[1]{
+  \renewcommand{\titreGeneralPrive}[0]{#1}
+}
+
+\newcommand{\sousTitreGeneralPrive}[0]{\ }
+\newcommand{\sousTitreGeneral}[1]{
+  \renewcommand{\sousTitreGeneralPrive}[0]{#1}
+}
+
+\newcommand{\titreDetaillePrive}[0]{\ }
+\newcommand{\titreDetaille}[1]{
+  \renewcommand{\titreDetaillePrive}[0]{#1}
+}
+
+\newcommand{\versionPrive}[0]{\ }
+\newcommand{\version}[1]{
+  \renewcommand{\versionPrive}[0]{#1}
+}
+
+\newcommand{\nomPrive}[0]{\ }
+\newcommand{\nom}[1]{
+  \renewcommand{\nomPrive}[0]{#1}
+}
+
+\newcommand{\numeroPrive}[0]{\ }
+\newcommand{\numero}[1]{
+  \renewcommand{\numeroPrive}[0]{#1}
+}
+
+\newcommand{\datePrive}[0]{\ }
+\newcommand{\dateDocument}[1]{
+  \renewcommand{\datePrive}[0]{#1}
+}
+
+\newcommand{\auteursPrive}[0]{\ }
+\newcommand{\auteurs}[1]{
+  \renewcommand{\auteursPrive}[0]{#1}
+}
+
+\newcommand{\destinatairesPrive}[0]{\ }
+\newcommand{\destinataires}[1]{
+  \renewcommand{\destinatairesPrive}[0]{#1}
+}
+
+\newcommand{\resumePrive}[0]{\ }
+\newcommand{\resume}[1]{
+  \renewcommand{\resumePrive}[0]{#1}
+}
+
+\newcommand{\motsClesPrive}[0]{\ }
+\newcommand{\motsCles}[1]{
+  \renewcommand{\motsClesPrive}[0]{#1}
+}
+
+\newcommand{\natureDerniereModificationPrive}[0]{\ }
+\newcommand{\natureDerniereModification}[1]{
+  \renewcommand{\natureDerniereModificationPrive}[0]{#1}
+}
+
+\newcommand{\referenceVersionPrive}[0]{\ }
+\newcommand{\referenceVersion}[1]{
+  \renewcommand{\referenceVersionPrive}[0]{#1}
+}
+
+\newcommand{\modeDiffusionControlePrive}[0]{FAUX}
+\newcommand{\modeDiffusionControle}[0]{
+  \renewcommand{\modeDiffusionControlePrive}[0]{VRAI}
+}
+
+\newcommand{\modeDiffusionNonControle}[0]{
+  \renewcommand{\modeDiffusionControlePrive}[0]{FAUX}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%                                   % 
+%  Définition du style des pages    %
+%                                   % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+
+%% Page de couverture %%
+
+\newcommand{\couverture}{ % Couverture, Fond
+	\thispagestyle{empty}
+	\begin{picture}(0,0)%(largeur, hauteur)
+		\put(-100,-400){\includegraphics[scale=0.4]{images/logoCouverture.png}}	 % image recouverte centré : (100,-300)
+	
+		\put(-90,-760){\includegraphics[width=211mm]{images/couverture.pdf}}
+		
+		\put(120,-610){
+		    	\begin{minipage}{13cm} 
+		  	  	\color{bleuInformatique}
+		    		\Large \titreGeneralPrive \\
+		    		\textit{\Large \sousTitreGeneralPrive} \\
+		    		\textbf{\Large \titreDetaillePrive}
+		    	\end{minipage}
+		}
+		
+		\put(-80,-600){
+		    	\begin{minipage}{6.3cm} 
+		  	  	\color{grisInsa}
+		    		\Large \raggedleft \titreAcronymePrive
+		    	\end{minipage}
+		}
+
+		\put(350,-750){
+		    	\begin{minipage}{5cm}
+ 		    		\raggedleft \footnotesize Version \versionPrive
+		    	\end{minipage}
+		}
+		
+	\end{picture}
+	\newpage
+	\pagestyle{pageService}
+	\cleardoublepage
+}
+
+%% page annexe
+\newcommand{\annexes}{
+	\newpage
+	\thispagestyle{empty}
+	\begin{picture}(0,0)%(largeur, hauteur)
+		\put(170,-300){\LARGE{Annexes}}
+	\end{picture}
+	\pagestyle{pageService}
+}
+
+
+%% Style générale des pages %%
+
+\fancypagestyle{pageService}{
+% Haut de page avec le titre à droite ou à gauche en fonction de la page pair ou impair :
+    %\thispagestyle{empty}
+    \fancyhf{}
+    \fancyhead[LE]{\itshape \titreDetaillePrive{} : \referenceVersionPrive}
+    \fancyhead[RO]{\itshape \titreDetaillePrive{} : \referenceVersionPrive}
+    \renewcommand{\headrulewidth}{0.2pt}
+
+    \fancyfoot[CE]{
+        \begin{picture}(0,0)
+            \put(-510,-48){\includegraphics[width=350mm,height=25mm]{images/Volutes3.pdf}}
+            \put(-114, -25){\raggedleft \footnotesize Version \versionPrive}
+            \put(-290,-40){
+                \begin{minipage}{20cm}
+                    \raggedleft \scriptsize 
+                    \textit{Ce document est la propriété du département \asi{} 
+                    de l'\insaRouen{} et ne peut être ni reproduit, ni communiqué à
+                    des tiers sans autorisation préalable}
+                \end{minipage}
+            }
+        \end{picture}
+    }
+
+    \fancyfoot[CO]{
+        \begin{picture}(0,0)
+        \put(-510,-48){\includegraphics[width=350mm,height=25mm]{images/Volutes3bis.pdf}}
+        \put(100, -25){\raggedleft \footnotesize Version \versionPrive}
+        \put(-290,-40){
+            \begin{minipage}{20cm}
+                \raggedleft \scriptsize 
+                \textit{Ce document est la propriété du département \asi{} 
+                de l'\insaRouen{} et ne peut être ni reproduit, ni communiqué à
+                des tiers sans autorisation préalable}
+            \end{minipage}
+        }
+        \end{picture}
+    }
+
+    \renewcommand{\topfraction}{0.85}
+    \renewcommand{\textfraction}{0.1}
+    \renewcommand{\floatpagefraction}{0.75}
+}
+
+\fancypagestyle{pageNormale}{
+% Haut de page avec le titre à droite ou à gauche en fonction de la page pair ou impair :
+    \fancyhf{}
+    \fancyhead[LE]{\itshape \titreDetaillePrive{} : \referenceVersionPrive}
+    \fancyhead[RO]{\itshape \titreDetaillePrive{} : \referenceVersionPrive}
+    \renewcommand{\headrulewidth}{0.2pt}
+
+    \fancyfoot[CE]{
+        \begin{picture}(0,0)
+            \put(-510,-48){\includegraphics[width=350mm,height=25mm]{images/Volutes3.pdf}}
+            \put(-170, -25){\bfseries Page \thepage}
+        		\put(-114, -25){\raggedleft \footnotesize Version \versionPrive}
+        		\put(-290,-40){
+                \begin{minipage}{20cm}
+                    \raggedleft \scriptsize 
+                    \textit{Ce document est la propriété du département \asi{} 
+                    de l'\insaRouen{} et ne peut être ni reproduit, ni communiqué à
+                    des tiers sans autorisation préalable}
+                \end{minipage}
+            }
+        \end{picture}
+    }
+
+    \fancyfoot[CO]{
+        \begin{picture}(0,0)
+	        \put(-510,-48){\includegraphics[width=350mm,height=25mm]{images/Volutes3bis.pdf}}
+	        \put(44, -25){\bfseries Page \thepage}
+	        \put(100, -25){\raggedleft \footnotesize Version \versionPrive}
+	        \put(-290,-40){
+	            \begin{minipage}{20cm}
+	                \raggedleft \scriptsize 
+	                \textit{Ce document est la propriété du département \asi{} 
+	                de l'\insaRouen{} et ne peut être ni reproduit, ni communiqué à
+	                des tiers sans autorisation préalable}
+	            \end{minipage}
+	        }
+        \end{picture}
+    }
+
+    \renewcommand{\topfraction}{0.85}
+    \renewcommand{\textfraction}{0.1}
+    \renewcommand{\floatpagefraction}{0.75}
+}
+
+
+
+
+\fancypagestyle{pageCR}{
+% Haut de page avec le titre à droite ou à gauche en fonction de la page pair ou impair :
+    \fancyhf{}
+    \fancyhead[C]{\nomPic{}}
+    \fancyhead[LE]{\itshape Créé le : \datePrive}
+    \fancyhead[RO]{\itshape Créé le : \datePrive}
+    \renewcommand{\headrulewidth}{0.2pt}
+
+    \fancyfoot[LE]{\bfseries Page \thepage}
+    \fancyfoot[RE]{\referenceVersionPrive}
+    \fancyfoot[RO]{\bfseries Page \thepage}
+    \fancyfoot[LO]{\referenceVersionPrive}
+
+    \renewcommand{\topfraction}{0.85}
+    \renewcommand{\textfraction}{0.1}
+    \renewcommand{\floatpagefraction}{0.75}
+}
+
+
+
+% Informations générales
+
+\newcommand{\informationsGenerales}[0]{
+	\pagestyle{pageService}
+    \noindent
+    \begin{center}
+        \begin{minipage}{18cm}
+            \begin{tabular}{lp{8cm}} % {|c|c|c|}
+                % \hline % Une ligne sur tout le tableau
+                \cline{1-1}
+                \textit{\bfseries{Auteur(s)}} & \textsc{\auteursPrive}\\
+                &\\% (pour avoir une ligne vide)
+                \cline{1-1}
+                \textit{\bfseries{Destinataire(s)}} & \textsc{\destinatairesPrive} \\
+                &\\% (pour avoir une ligne vide)
+                \cline{1-1}
+                \textit{\bfseries{Résumé}} & \resumePrive \\
+                &\\
+                \cline{1-1}
+                \textit{\bfseries{Thème et mots clés}} & \motsClesPrive \\
+                &\\
+                \cline{1-1}
+                \textit{\bfseries{Nature de la dernière modification}} & \natureDerniereModificationPrive \\
+                &\\
+                \cline{1-1}
+                \textit{\bfseries{Référence}} & \referenceVersionPrive{}, Version \versionPrive{}\\
+            \end{tabular}
+        \end{minipage}
+    \end{center}
+    \vspace{3cm}
+    \begin{tabular}[h]{p{0.1\linewidth}>{\centering}p{0.6\linewidth}p{0.3\linewidth}}
+        & \hfill Exemplaire en diffusion contrôlée
+        &\ifthenelse{\equal{\modeDiffusionControlePrive}{VRAI}}{$\boxtimes$}{$\square$}\\
+        & \hfill Exemplaire en diffusion non contrôlée
+        &\ifthenelse{\equal{\modeDiffusionControlePrive}{VRAI}}{$\square$}{$\boxtimes$}\\
+    \end{tabular}
+    \newpage
+    \cleardoublepage
+}
+
+\newenvironment{pagesService}{
+    \pagestyle{pageService}
+    \chapter*{Page de service}
+  }
+  {
+}
+
+\newenvironment{historique}{
+    \section*{Historique des évolutions}
+    \begin{center}
+        \begin{longtable}{|p{0.09\textwidth}|p{0.13\textwidth}|p{0.35\textwidth}|p{0.16\textwidth}|p{0.15\textwidth}|}
+            \hline	% Une ligne horizontale
+            \rowcolor[gray]{.8}
+            Version				 & Date					& Auteur(s)			 & Modification(s) & Partie(s) modifiée(s)\\
+            \hline
+            \endfirsthead
+            \hline	% Une ligne horizontale
+            \rowcolor[gray]{.8}
+            Version				 & Date					& Auteur(s)			 & Modification(s) & Partie(s) modifiée(s)\\
+            \hline
+            \endhead
+}
+{
+        \end{longtable}
+    \end{center}
+}
+
+\newcommand{\unHistorique}[5]{
+    #1 & #2	&	#3	& #4 & #5 \\
+    \hline
+}
+
+
+\newenvironment{suiviDiffusions}{
+    \section*{Suivi des diffusions}
+    \begin{center}
+        \begin{longtable}{|p{0.1\linewidth}|p{0.13\linewidth}|p{0.7\linewidth}|}
+            \hline
+            \rowcolor[gray]{.8}
+            Version				 & Date					& Destinataire(s)\\
+            \hline
+            \endfirsthead
+            \hline
+            \rowcolor[gray]{.8}
+            Version				 & Date					& Destinataire(s)\\
+            \hline
+            \endhead
+}
+{
+        \end{longtable}
+    \end{center}
+}
+
+\newcommand{\unSuivi}[3]{
+#1 & #2	& #3 \\
+\hline
+}
+
+\newenvironment{lesDestinataires}{
+    \vspace{-14.5pt}
+    \begin{list}{}{
+      \setlength{\leftmargin}{0pt}
+      \setlength{\topsep}{0pt}
+      \setlength{\parskip}{0pt}
+      \setlength{\partopsep}{0pt}
+      \setlength{\parsep}{0pt}
+    }
+  }
+  {
+    \end{list}
+}
+
+\newenvironment{signatures}{
+    \section*{Signatures}
+    \begin{center}
+        \begin{longtable}{|p{0.15\linewidth}|p{0.17\linewidth}|p{0.25\linewidth}|p{0.14\linewidth}|p{0.12\linewidth}|}
+            \hline
+            \rowcolor[gray]{.8}
+            & Fonction & Nom & Date & Visa		 \\
+            \hline
+            \endfirsthead
+            \hline
+            \rowcolor[gray]{.8}
+            & Fonction & Nom & Date & Visa		 \\
+            \hline
+            \endhead
+}
+{
+            \hline
+        \end{longtable}
+    \end{center}
+}
+
+\newcommand{\visaSignature}[0]{Signé}
+\newcommand{\visaMail}[0]{Courriel}
+\newcommand{\visaIntranet}[0]{Intranet}
+\newcommand{\visaGit}[0]{Dépôt GIT}
+
+\newcommand{\uneSignature}[5]{
+    #1 & #2	& #3 & #4 & #5\\\hline
+}
+
+\newenvironment{terminologie}[1][Terminologie]{
+    \section*{Terminologie}
+    {\emph{Le tableau suivant indique les différentes significations des termes et
+    abréviations utilisées dans ce document.}}
+    \begin{center}
+    		\begin{longtable}{|p{0.2\linewidth}|p{0.75\linewidth}|}
+    		\hline  % Une ligne horizontale
+        \rowcolor[gray]{.8}
+        Abréviation         &             Signification    \\
+        \hline
+}
+{
+    		\end{longtable}
+    \end{center}
+}
+
+\newcommand{\uneTerminologie}[2]{
+    #1 & #2 \\
+    \hline
+}
+
+\newenvironment{documentsReference}[1][Document]{
+    \section*{Documents en référence}
+    \begin{center}
+  }
+  {
+    \end{center}
+}
+
+
+\newenvironment{listeDeReferences}[1][Document]{
+    \begin{longtable}{|p{0.65\linewidth}|p{0.3\linewidth}|}
+      \hline
+      \rowcolor[gray]{.8}
+      #1 & Référence\\
+      \hline
+      \endfirsthead
+      \hline
+      \rowcolor[gray]{.8}
+      #1 & Référence\\
+      \hline
+      \endhead
+  }
+  {
+    \end{longtable}
+}
+
+\newcommand{\uneReference}[2]{
+  #1 & #2 \\
+  \hline
+}
+
+\newcommand{\siteAsi}[0]{http://asi.insa-rouen.fr}
+
+\newcommand{\pageQuatriemeCouverture}[0]{
+  \newpage
+  \thispagestyle{empty}
+  \begin{picture}(0,0)
+    \put(-75,-755){\includegraphics[width=211mm]{images/couvertureBis.pdf}}
+    \put(75, -550){
+      \begin{normalsize}
+        \begin{minipage}{10cm}
+          \begin{tabular}{r}
+            \insaRouen\\
+            Avenue de l'Université - BP 08\\
+            76801 Saint-Etienne-du-Rouvray Cedex\\
+            Tél : 02 32 95 97 79\\
+            Fax : 02 32 95 97 08\\
+            \url{\siteAsi}\\
+          \end{tabular}
+        \end{minipage}
+      \end{normalsize}}
+    \put(320, -610){\includegraphics[width=50mm]{images/logoASI.pdf}}
+  \end{picture}
+}
+
+\endinput

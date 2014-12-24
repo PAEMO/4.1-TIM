@@ -1,0 +1,62 @@
+%\documentclass[a4paper, twoside, 12pt, openright]{report}
+\documentclass[a4paper, twoside, 12pt]{report}
+
+\usepackage{packages/miseEnPage}
+
+\usepackage{vocabulaire/vocabulaire}
+
+\input{packages/packages}
+
+%\input{packages}
+
+% Paramètres de la page de garde
+
+\titreAcronyme{Traitement d'Image \newline Jérôme \bsc{Desseaux} \& Pierre-Alain \bsc{Emo} \& Clément \bsc{Gomme}}
+\titreGeneral{Detection, segmentation and classification of 3D urban
+objects using mathematical morphology and supervised
+learning}
+\titreDetaille{Rapport}
+\version{1.00}
+
+% Renseignements sur le document
+
+\auteurs{\jerome \newline \pa \clement}
+\resume{Ce document présente le plan de gestion des configuration du PIC \nomPic{}}
+
+\referenceVersion{V1.00}
+
+\begin{document}
+
+\couverture{}
+
+%\input{src/\nomPic_Q_PGC_Partie01}
+
+\newpage
+
+\begin{abstract}
+\input{src/00_resume}
+\end{abstract}
+
+\pagestyle{pageNormale}
+\setcounter{page}{1}
+
+\tableofcontents{}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Inclure les différentes parties du    %
+%   ici. ex : \input{src/nom_du_fichier}   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{src/02_userstories}
+\input{src/01_introduction}
+\input{src/02_travaux_relatifs}
+\input{src/03_methodologie}
+\input{src/04_resultats}
+\input{src/05_conclusion}
+
+
+\pageQuatriemeCouverture{}
+
+\end{document}

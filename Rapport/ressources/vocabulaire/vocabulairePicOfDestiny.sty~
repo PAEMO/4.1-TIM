@@ -1,0 +1,125 @@
+% Version 1.00
+% Autheur Étienne Batise, Alexandre Brehmer, Valentin Cuenot, Viviane Desgrange, Jérôme Desseaux, Quentin Diaferia, Pierre-Alain Emo, Clément Gomme, Mickael Navel
+
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\ProvidesPackage{vocabulairePicOfDestiny}
+
+\RequirePackage[francais]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+
+% Prénoms et noms des acteurs principaux de ce PIC
+
+\newcommand{\interlocuteur}[0]{\textsc{Arthur Tropardy}}
+
+\newcommand{\tuteurp}[0]{\textsc{TODO}}
+\newcommand{\tuteurq}[0]{\textsc{M. Benjamin Coelho De Matos}}
+\newcommand{\approbateur}[0]{\textsc{Pascal Meslier}}
+
+\newcommand{\etienne}[0]{\textsc{Étienne Batise}}
+\newcommand{\alexandre}[0]{\textsc{Alexandre Brehmer}}
+\newcommand{\valentin}[0]{\textsc{Valentin Cuenot}}
+\newcommand{\viviane}[0]{\textsc{Viviane Desgrange}}
+\newcommand{\jerome}[0]{\textsc{Jérôme Desseaux}}
+\newcommand{\quentin}[0]{\textsc{Quentin Diaferia}}
+\newcommand{\pa}[0]{\textsc{Pierre-Alain Emo}}
+\newcommand{\clement}[0]{\textsc{Clément Gomme}}
+\newcommand{\mickael}[0]{\textsc{Mickaël Navel}}
+\newcommand{\equipe}[0]{\etienne{}, \alexandre{}, \valentin{}, \viviane{}, \jerome{}, \quentin{}, \pa{}, \clement{}, \mickael{}}
+
+% Vocabulaire spécifique classé par ordre alphabétique du mot représenté
+% 
+% Ex :
+% 
+% \newcommand{\B}[0]{Arbre}
+% \newcommand{\A}[0]{Bol}
+
+\newcommand{\euro}[0]{€}
+\newcommand{\asiLong}[0]{Architecture des Systèmes d'Information}
+\newcommand{\asi}[0]{ASI}
+\newcommand{\cdcLong}[0]{Cahier des Charges}
+\newcommand{\cdc}[0]{CDC}
+\newcommand{\cdrLong}[0]{Cahier de Recettes}
+\newcommand{\cdr}[0]{CDR}
+\newcommand{\cdpLong}[0]{Carnet de Produit}
+\newcommand{\cdp}[0]{CDP}
+\newcommand{\cdsLong}[0]{Carnet de Sprint}
+\newcommand{\cds}[0]{CDS}
+\newcommand{\CP}[0]{Chef PIC}
+\newcommand{\CPadj}[0]{Chef PIC Adjoint}
+\newcommand{\CTFT}[0]{CTFT}
+\newcommand{\CTFTLong}[0]{Commission de Traitement des Faits Techniques}
+\newcommand{\dcLong}[0]{Document de Conception}
+\newcommand{\dc}[0]{DC}
+\newcommand{\dci}[0]{DCI}
+\newcommand{\dciLong}[0]{Document de Configuration de l'Infrastructure}
+\newcommand{\dev}[0]{Développeur}
+\newcommand{\dgq}[0]{DGQ}
+\newcommand{\directeurQ}[0]{Directeur Qualité}
+\newcommand{\dgqLong}[0]{Disposition Générale de Qualité}
+\newcommand{\dscLong}[0]{Dossier de Spécifications et de Conception}
+\newcommand{\dsc}[0]{DSC}
+\newcommand{\dseLong}[0]{Dossier de Spécifications Externes}
+\newcommand{\dse}[0]{DSE}
+\newcommand{\dsiLong}[0]{Dossier de Spécifications Internes}
+\newcommand{\dsi}[0]{DSI}
+\newcommand{\ea}[0]{État de l'Art}
+\newcommand{\fig}[0]{\textsc{Figure}}
+\newcommand{\fii}[0]{Fiche d'Identification d'Indicateur}
+\newcommand{\fdr}[0]{Fiche de Risque}
+\newcommand{\ft}[0]{Fait Technique}
+\newcommand{\ftCourt}[0]{FT}
+\newcommand{\fts}[0]{Faits Techniques}
+\newcommand{\fftCourt}[0]{FFT}
+\newcommand{\fft}[0]{Fiche de Faits Techniques}
+\newcommand{\ffts}[0]{Fiches de Faits Techniques}
+\newcommand{\foc}[0]{Fiche d'Ordre de Correction}
+\newcommand{\focCourt}[0]{FOC}
+\newcommand{\gantt}[0]{GANTT}
+\newcommand{\git}[0]{GIT}
+\newcommand{\insa}[0]{INSA}
+\newcommand{\insaLong}[0]{Institut National des Sciences Appliquées}
+\newcommand{\insaRouen}[0]{INSA de Rouen}
+\newcommand{\isoLong}[0]{International Standard Organisation}
+\newcommand{\isoCourt}[0]{ISO}
+\newcommand{\isoNeufMilleUn}[0]{ISO 9001:2008}
+\newcommand{\MGPI}[0]{MGPI}
+\newcommand{\monProjet}[0]{MonProjet}
+\newcommand{\pgc}[0]{PGC}
+\newcommand{\intrapic}[0]{PGPic}
+\newcommand{\pic}[0]{PIC}
+\newcommand{\picIntitule}[0]{PIC Invoke}
+\newcommand{\picLong}[0]{Projet INSA Certifié}
+\newcommand{\ptiLong}[0]{Plan de \tis}
+\newcommand{\pti}[0]{PTI}
+\newcommand{\ptuLong}[0]{Plan de \tus}
+\newcommand{\ptu}[0]{PTU}
+\newcommand{\nomPic}[0]{PicOfDestiny}
+\newcommand{\nomPicCamel}[0]{picOfDestiny}
+\newcommand{\ordreCorrection}[0]{Ordre de Correction}
+\newcommand{\pdr}[0]{Portefeuille de Risques}
+\newcommand{\pilotedr}[0]{pilote de risque}
+\newcommand{\pq}[0]{PQ}
+\newcommand{\pqLong}[0]{Plan Qualité}
+\newcommand{\pgcLong}[0]{Plan de Gestion des Configurations}
+\newcommand{\ptvLong}[0]{Plan de Tests de Validation}
+\newcommand{\ptv}[0]{PTV}
+\newcommand{\pvvvLong}[0]{Procès Verbal de Vérification et Validation}
+\newcommand{\pvvv}[0]{PVVV}
+\newcommand{\qualite}[0]{Qualité}
+\newcommand{\refQ}[0]{Référentiel Qualité}
+\newcommand{\Rdev}[0]{Responsable Développement}
+\newcommand{\RGC}[0]{Responsable de la Gestion des Configurations}
+\newcommand{\RI}[0]{Responsable Infrastructure}
+\newcommand{\RQ}[0]{Responsable Qualité}
+\newcommand{\RQadj}[0]{Responsable Qualité Adjoint}
+\newcommand{\RR}[0]{Responsable réseau}
+\newcommand{\SMQ}[0]{Système de Management de la Qualité}
+\newcommand{\tus}[0]{Test Unitaires}
+\newcommand{\tis}[0]{Test d'Intégration}
+\newcommand{\tvsLong}[0]{Tests de Validation de Scénario}
+\newcommand{\tvs}[0]{TVS}
+\newcommand{\tuteurPedagogique}[0]{Tuteur Pédagogique}
+\newcommand{\tuteurQualite}[0]{Tuteur Qualité}
+\newcommand{\unite}[0]{Unité P3}
+\endinput
